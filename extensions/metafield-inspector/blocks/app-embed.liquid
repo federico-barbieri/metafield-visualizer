@@ -1,0 +1,26 @@
+<script>
+  window.__MF_INSPECTOR = {
+    proxyBase: '/apps/mf-inspector',
+    enabled: {{ block.settings.enable_debug | json }},
+    shopDomain: '{{ shop.permanent_domain }}'
+  };
+</script>
+
+{{ 'metafield-inspector.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'metafield-inspector.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Metafield Inspector",
+  "target": "head",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_debug",
+      "label": "Always show inspector (bypass URL gate)",
+      "default": false,
+      "info": "When disabled, the inspector only appears in theme editor or with ?mf_debug=1 in the URL."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,7 @@
+api_version = "2025-01"
+
+[[extensions]]
+name = "Metafield Inspector"
+handle = "metafield-inspector"
+uid = "641d693d-433f-3373-6817-2d5d870b92acc77b82fd"
+type = "theme"
