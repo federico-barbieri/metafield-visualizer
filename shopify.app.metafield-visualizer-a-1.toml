@@ -28,7 +28,7 @@ api_version = "2026-04"
 scopes = "read_products,read_themes"
 
 [auth]
-redirect_urls = [ "https://app.metafieldinspector.com/api/auth" ]
+redirect_urls = [ "https://app.metafieldinspector.com/auth/callback" ]
 
 [app_proxy]
 url = "https://app.metafieldinspector.com/api/proxy"
