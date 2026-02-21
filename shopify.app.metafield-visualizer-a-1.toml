@@ -2,12 +2,11 @@
 
 client_id = "b360a1ee8b4d667a4ed40d0ff801a364"
 name = "metafield-visualizer-a"
-application_url = "https://example.com"
+application_url = "https://app.metafieldinspector.com"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
-include_config_on_deploy = true
 
 [webhooks]
 api_version = "2026-04"
@@ -29,9 +28,9 @@ api_version = "2026-04"
 scopes = "read_products,read_themes"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://app.metafieldinspector.com/api/auth" ]
 
 [app_proxy]
-url = "https://example.com/api/proxy"
+url = "https://app.metafieldinspector.com/api/proxy"
 subpath = "mf-inspector"
 prefix = "apps"
