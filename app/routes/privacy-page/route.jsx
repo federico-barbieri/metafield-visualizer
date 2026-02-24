@@ -109,27 +109,34 @@ export default function PrivacyPage() {
         <section style={styles.section}>
           <h2 style={styles.h2}>GDPR Compliance</h2>
           <p>
-            The App implements Shopify's mandatory GDPR webhooks:
+            The App implements Shopify's three mandatory GDPR webhooks:
           </p>
           <ul style={styles.list}>
             <li>
-              <strong>Customer data request</strong> — we will provide any personal data we
-              hold for a customer upon request.
+              <strong>Customer data request</strong> — the App operates with{" "}
+              <code>read_products</code> and <code>read_themes</code> scopes only and does
+              not store any personal shopper/customer data. There is no customer data to
+              report.
             </li>
             <li>
-              <strong>Customer data erasure</strong> — we will delete any personal data
-              associated with a customer upon request.
+              <strong>Customer data erasure</strong> — same as above; no customer data is
+              stored and no deletion is required.
             </li>
             <li>
-              <strong>Shop data erasure</strong> — when a merchant uninstalls the App, we
-              delete all store data within 30 days.
+              <strong>Shop data erasure</strong> — fired by Shopify 48 hours after a
+              merchant uninstalls the App. We permanently delete all remaining store data:
+              session records (including the merchant's name, email, and access tokens) and
+              all cached theme scan results associated with the shop.
             </li>
           </ul>
           <p>
-            As the App operates with <code>read_products</code> and <code>read_themes</code>{" "}
-            scopes only, we do not store personal customer (shopper) data. The only personal
-            data we store is the name and email of the merchant account that authenticated
-            the App, as provided by Shopify during the OAuth flow.
+            Data deletion also begins immediately upon uninstall via the{" "}
+            <code>app/uninstalled</code> webhook, ahead of the 48-hour GDPR deadline.
+          </p>
+          <p>
+            The only personal data we store is the name and email of the merchant account
+            that authenticated the App, as provided by Shopify during the OAuth flow. We do
+            not store personal data of shoppers or customers.
           </p>
         </section>
 
