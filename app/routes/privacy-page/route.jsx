@@ -13,21 +13,41 @@ export default function PrivacyPage() {
 
         <section style={styles.section}>
           <h2 style={styles.h2}>Information We Collect</h2>
-          <p>When you install the App, we access the following information from your Shopify store:</p>
+          <p>When you install the App, we access and may store the following information:</p>
+
+          <h3 style={styles.h3}>Data accessed from Shopify</h3>
           <ul style={styles.list}>
             <li>
-              <strong>Store information</strong> — shop domain and authentication tokens
-              required to operate the App.
-            </li>
-            <li>
               <strong>Product data</strong> — product handles, titles, and metafields
-              (namespaces, keys, types, and values) to display them inside the App.
+              (namespaces, keys, types, and values), fetched on demand to display inside the
+              App. This data is <strong>not</strong> stored on our servers.
             </li>
             <li>
-              <strong>Theme files</strong> — theme Liquid source files to scan for metafield
-              references and highlight where each metafield is used in your storefront.
+              <strong>Theme files</strong> — Liquid source files from your active theme,
+              scanned to detect where metafields are referenced in your storefront.
             </li>
           </ul>
+
+          <h3 style={styles.h3}>Data we store</h3>
+          <ul style={styles.list}>
+            <li>
+              <strong>Session and authentication data</strong> — shop domain, OAuth access
+              token, refresh token, token expiry, and OAuth scopes, required to maintain your
+              authenticated session with Shopify.
+            </li>
+            <li>
+              <strong>Merchant account information</strong> — first name, last name, email
+              address, and user ID of the Shopify staff account that installed or authenticated
+              the App. This is provided by Shopify during the OAuth flow.
+            </li>
+            <li>
+              <strong>Theme scan results</strong> — after a theme scan, we cache the results
+              (theme ID, metafield namespace and key, and the Liquid file name and line number
+              where each metafield is referenced) to avoid re-scanning on every page load.
+              This data is associated with your shop domain.
+            </li>
+          </ul>
+
           <p>
             We do <strong>not</strong> access customer data, orders, or any other store data
             beyond the scopes listed above (<code>read_products</code>,{" "}
@@ -69,14 +89,20 @@ export default function PrivacyPage() {
 
         <section style={styles.section}>
           <h2 style={styles.h2}>Data Storage and Security</h2>
+          <p>The following data is persisted in our database:</p>
+          <ul style={styles.list}>
+            <li>Session and authentication tokens (shop domain, access token, refresh token, expiry, scopes)</li>
+            <li>Merchant account details provided during OAuth (name, email, user ID)</li>
+            <li>Cached theme scan results (theme ID, metafield references with file names and line numbers)</li>
+          </ul>
           <p>
-            Session and authentication data is stored securely on cloud servers. We implement
-            industry-standard security measures, including encrypted connections (HTTPS) and
-            access controls, to protect stored information.
+            Product metafield data is fetched on demand via the Shopify Admin API and is{" "}
+            <strong>not</strong> persistently stored on our servers.
           </p>
           <p>
-            Product metafield data is fetched on demand via the Shopify Admin API and is not
-            persistently stored on our servers.
+            All data is stored on secured cloud servers. We implement industry-standard
+            security measures including encrypted connections (HTTPS) and access controls
+            to protect stored information.
           </p>
         </section>
 
@@ -101,7 +127,9 @@ export default function PrivacyPage() {
           </ul>
           <p>
             As the App operates with <code>read_products</code> and <code>read_themes</code>{" "}
-            scopes only, we do not store personal customer data.
+            scopes only, we do not store personal customer (shopper) data. The only personal
+            data we store is the name and email of the merchant account that authenticated
+            the App, as provided by Shopify during the OAuth flow.
           </p>
         </section>
 
@@ -190,6 +218,12 @@ const styles = {
     marginBottom: "12px",
     borderBottom: "1px solid #e5e7eb",
     paddingBottom: "6px",
+  },
+  h3: {
+    fontSize: "1rem",
+    fontWeight: "600",
+    marginTop: "16px",
+    marginBottom: "8px",
   },
   list: {
     paddingLeft: "20px",
