@@ -88,7 +88,7 @@ var ld=ce('div','mfi-panel mfi-loading');
 ld.innerHTML='<div class="mfi-header"><span class="mfi-title">Loading\u2026</span></div>'+
 '<div class="mfi-loader-body">Fetching metafields for <strong>'+h+'</strong></div>';
 pp(ld,el);document.body.appendChild(ld);ap=ld;
-Promise.all([fm(h),fr()]).then(function(rs){if(ch!==h)return;rp();
+Promise.all([fm(h),fr()]).then(function(rs){if(ch!==h)return;if(ap){ap.remove();ap=null;}
 var pn=cp(h,rs[0],rs[1]);pp(pn,el);document.body.appendChild(pn);ap=pn;});}
 function rp(){if(ap&&!pin){ap.remove();ap=null;ch=null;}}
 var hCard=null,lt=null;
