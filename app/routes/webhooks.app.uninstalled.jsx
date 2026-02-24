@@ -12,5 +12,8 @@ export const action = async ({ request }) => {
     await db.session.deleteMany({ where: { shop } });
   }
 
+  // Delete all cached theme scan results for this shop.
+  await db.themeReference.deleteMany({ where: { shop } });
+
   return new Response();
 };
